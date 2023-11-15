@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+// use these tailwind modules only for this moment
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// add here the custom classes which you don t find with tailwind
