@@ -8,6 +8,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss'
 })
-export class NavComponent {
-
-}
+export class NavComponent {}

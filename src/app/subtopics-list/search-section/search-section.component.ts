@@ -8,6 +8,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './search-section.component.html',
   styleUrl: './search-section.component.scss'
 })
-export class SearchSectionComponent {
-
-}
+export class SearchSectionComponent {}

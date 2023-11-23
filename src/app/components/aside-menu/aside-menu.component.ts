@@ -8,6 +8,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './aside-menu.component.html',
   styleUrl: './aside-menu.component.scss'
 })
-export class AsideMenuComponent {
-
-}
+export class AsideMenuComponent {}

@@ -8,6 +8,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './subtopic-modal.component.html',
   styleUrl: './subtopic-modal.component.scss'
 })
-export class SubtopicModalComponent {
-
-}
+export class SubtopicModalComponent {}
