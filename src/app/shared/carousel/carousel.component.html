@@ -1,0 +1,16 @@
+<div class="ml-[10%] mr-[10%] mt-[10%]" [class.hidden]="!isCarouselOpen()">
+  <p-carousel
+    [value]="articlesByTopic"
+    [numVisible]="3"
+    [numScroll]="3"
+    [circular]="true"
+    [responsiveOptions]="responsiveOptions"
+    [autoplayInterval]="3000"
+  >
+    <ng-template let-article pTemplate="item">
+      <div class="border-2 rounded-lg text-center cursor-pointer" (click)="navigateToMediumLink(article.link)">
+        <p>{{ article.title }}</p>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>

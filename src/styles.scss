@@ -1,7 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+
 // use these tailwind modules only for this moment
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 // add here the custom classes which you don t find with tailwind
+
+body {
+  background-color: #161d31;
+}
+
+.bg-secondary {
+  background-color: #283046;
+}
+
+.selected {
+  background-color: #4a5568;
+  color: #ffffff;
+}

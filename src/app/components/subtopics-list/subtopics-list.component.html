@@ -1,0 +1,5 @@
+<app-search-section *ngIf="topicName" (searchedValueSent)="searchSubtopic($event)"></app-search-section>
+<h3>{{ topicName }}</h3>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+  <app-subtopic *ngFor="let subtopic of subtopics" [subtopicName]="subtopic"> </app-subtopic>
+</div>
