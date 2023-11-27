@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubTopic } from '../../../models/subtopic.model';
-import { ModalService } from '../../../services/modal.service';
-import { TopicService } from '../../../services/topic.service';
+import { SubTopic } from '../../../../models/subtopic.model';
+import { ModalService } from '../../../../services/modal.service';
+import { TopicService } from '../../../../services/topic.service';
 
 const MODALID = 'subtopic';
 @Component({
@@ -21,10 +21,9 @@ export class SubtopicComponent {
   ) {}
 
   openSubtopicModal() {
-    this.modalService.toggleModal(MODALID);
-
     if (this.subtopicName) {
       this.topicService.setCurrentSubtopic(this.subtopicName);
+      this.modalService.toggleModal(MODALID);
     }
   }
 }

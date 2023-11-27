@@ -208,8 +208,8 @@ export class TopicService {
     }
   ];
 
-  protected listOfSubtopics: SubTopic[] | [] = [];
-  private currentSubtopic = new Subject<SubTopic>();
+  protected listOfSubtopics: SubTopic[] = [];
+  private readonly currentSubtopic = new Subject<SubTopic>();
   currentSubtopic$ = this.currentSubtopic.asObservable();
 
   constructor() {}
@@ -218,15 +218,19 @@ export class TopicService {
     return this.TOPICSLIST;
   }
 
-  getListOfSubtopicsByTopicName(topic: string): SubTopic[] | [] {
+  getListOfSubtopicsByTopicName(topic: string): SubTopic[] {
     const matchingTopic = this.TOPICSLIST.find(el => el.name === topic);
-    this.listOfSubtopics = matchingTopic?.subtopic!;
 
-    return matchingTopic?.subtopic!;
+    if (matchingTopic) {
+      this.listOfSubtopics = matchingTopic.subtopic;
+      return this.listOfSubtopics;
+    }
+
+    return [];
   }
 
   getSubtopicBySearchedValue(searchedValue: string, topicName: string): SubTopic[] | [] {
-    return this.listOfSubtopics?.filter(
+    return this.listOfSubtopics.filter(
       el =>
         el.title.toLowerCase().includes(searchedValue) ||
         el.description.toLowerCase().includes(searchedValue) ||
