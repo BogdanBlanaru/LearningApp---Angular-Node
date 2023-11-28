@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { debounceTime, distinctUntilChanged, filter, fromEvent, map, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, fromEvent, map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-section',
@@ -21,12 +21,8 @@ export class SearchSectionComponent implements AfterViewInit, OnDestroy {
       this.subscription.add(
         fromEvent(this.subtopicsSearchValue.nativeElement as HTMLInputElement, 'keyup')
           .pipe(
-            map((event: Event) => {
-              return (event.target as HTMLInputElement).value;
-            }),
-
-            filter(res => res.length > 3),
-            debounceTime(1000),
+            map((event: Event) => (event.target as HTMLInputElement).value),
+            debounceTime(250),
             distinctUntilChanged()
           )
           .subscribe((text: string) => {

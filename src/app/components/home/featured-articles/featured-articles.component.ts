@@ -1,10 +1,10 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarouselComponent } from '../../shared/carousel/carousel.component';
 import { Observable, Subscription, map } from 'rxjs';
-import { Article, ArticleItems } from '../../models/article.model';
-import { ArticlesService } from '../../services/articles.service';
-import { CarouselResponsiveOptions } from '../../models/carousel-responsive-options.model';
+import { CarouselComponent } from '../../../shared/carousel/carousel.component';
+import { CarouselResponsiveOptions } from '../../../models/carousel-responsive-options.model';
+import { Article, ArticleItems } from '../../../models/article.model';
+import { ArticlesService } from '../../../services/medium-articles.service';
 
 @Component({
   selector: 'app-featured-articles',

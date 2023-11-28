@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Topic } from '../../models/topic.model';
-import { TopicService } from '../../services/topic.service';
+import { Topic } from '../../../models/topic.model';
+import { TopicService } from '../../../services/topic.service';
 
 @Component({
   selector: 'app-aside-menu',
