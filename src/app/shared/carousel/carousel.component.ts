@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
 import { ArticleItems } from '../../models/article.model';
@@ -9,7 +9,8 @@ import { CarouselResponsiveOptions } from '../../models/carousel-responsive-opti
   standalone: true,
   imports: [CommonModule, CarouselModule],
   templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.scss'
+  styleUrl: './carousel.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselComponent {
   @Input() topicName: string = '';
