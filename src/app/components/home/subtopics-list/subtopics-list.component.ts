@@ -1,8 +1,8 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SubtopicComponent } from './subtopic/subtopic.component';
-import { TopicService } from '../../services/topic.service';
-import { SubTopic } from '../../models/subtopic.model';
+import { TopicService } from '../../../services/topic.service';
+import { SubTopic } from '../../../models/subtopic.model';
 import { SearchSectionComponent } from './search-section/search-section.component';
 
 @Component({
@@ -10,11 +10,12 @@ import { SearchSectionComponent } from './search-section/search-section.componen
   standalone: true,
   imports: [CommonModule, SubtopicComponent, SearchSectionComponent],
   templateUrl: './subtopics-list.component.html',
-  styleUrl: './subtopics-list.component.scss'
+  styleUrl: './subtopics-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubtopicsListComponent implements OnChanges {
   @Input() topicName: string = '';
-  protected subtopics?: SubTopic[] | [];
+  protected subtopics?: SubTopic[];
   protected searchedSubtopic?: string;
 
   constructor(private topicService: TopicService) {}
@@ -31,7 +32,7 @@ export class SubtopicsListComponent implements OnChanges {
     if (this.searchedSubtopic.length > 0) {
       this.subtopics = this.topicService.getSubtopicBySearchedValue(this.searchedSubtopic, this.topicName);
     } else {
-      this.subtopics = [];
+      this.subtopics = this.topicService.getListOfSubtopicsByTopicName(this.topicName);
     }
   }
 }

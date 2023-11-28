@@ -1,9 +1,15 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
-import { ArticlesService } from '../../services/articles.service';
+import { MediumArticlesService } from '../../services/medium-articles.service';
 import { Article, ArticleItems } from '../../models/article.model';
-import { Observable, Subscription, map } from 'rxjs';
+import { map, Observable, shareReplay, Subscription } from 'rxjs';
+
+interface ResponsiveOptions {
+  breakpoint: string;
+  numVisible: number;
+  numScroll: number;
+}
 
 @Component({
   selector: 'app-carousel',
@@ -13,17 +19,20 @@ import { Observable, Subscription, map } from 'rxjs';
   styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() topicName: string = '';
-  autoplayInterval: number = 3000;
-  responsiveOptions: any[] | undefined;
-  articles$: Observable<ArticleItems[] | []> = new Observable();
-  articlesByTopic: ArticleItems[] | [] = [];
   private subscription: Subscription = new Subscription();
 
-  constructor(private articlesService: ArticlesService) {
-    this.articles$ = this.articlesService
-      .getArticles()
-      .pipe(map((el: Article) => el.items.map((article: ArticleItems) => article)));
+  @Input() topicName: string = '';
+
+  autoplayInterval: number = 3000;
+  responsiveOptions?: ResponsiveOptions[];
+  articles$: Observable<ArticleItems[]> = new Observable();
+  articlesByTopic: ArticleItems[] = [];
+
+  constructor(private articlesService: MediumArticlesService) {
+    this.articles$ = this.articlesService.getArticles().pipe(
+      map((el: Article) => el.items),
+      shareReplay(1)
+    );
   }
 
   ngOnInit() {
@@ -48,9 +57,11 @@ export class CarouselComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['topicName']) {
-      this.subscription = this.articles$.subscribe((articles: ArticleItems[]) => {
-        this.articlesByTopic = this.articlesService.getListOfArticlesByTopicName(this.topicName, articles);
-      });
+      this.subscription.add(
+        this.articles$.subscribe((articles: ArticleItems[]) => {
+          this.articlesByTopic = this.articlesService.getListOfArticlesByTopicName(this.topicName, articles);
+        })
+      );
     }
   }
 

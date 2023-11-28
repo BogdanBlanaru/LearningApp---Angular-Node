@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarouselComponent } from '../../shared/carousel/carousel.component';
+import { CarouselComponent } from '../../../shared/carousel/carousel.component';
 
 @Component({
   selector: 'app-featured-articles',
