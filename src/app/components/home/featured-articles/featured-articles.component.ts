@@ -4,7 +4,7 @@ import { Observable, Subscription, map } from 'rxjs';
 import { CarouselComponent } from '../../../shared/carousel/carousel.component';
 import { CarouselResponsiveOptions } from '../../../models/carousel-responsive-options.model';
 import { Article, ArticleItems } from '../../../models/article.model';
-import { ArticlesService } from '../../../services/medium-articles.service';
+import { MediumArticlesService } from '../../../services/medium-articles.service';
 
 @Component({
   selector: 'app-featured-articles',
@@ -21,7 +21,7 @@ export class FeaturedArticlesComponent implements OnInit, OnChanges, OnDestroy {
   articlesByTopic: ArticleItems[] = [];
   private subscription: Subscription = new Subscription();
 
-  constructor(private articlesService: ArticlesService) {
+  constructor(private articlesService: MediumArticlesService) {
     this.articles$ = this.articlesService.getArticles().pipe(map((el: Article) => el.items));
   }
 

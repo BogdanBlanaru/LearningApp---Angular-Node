@@ -6,7 +6,7 @@ import { Article, ArticleItems } from '../models/article.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ArticlesService {
+export class MediumArticlesService {
   private apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@mgechev';
 
   constructor(private http: HttpClient) {}
