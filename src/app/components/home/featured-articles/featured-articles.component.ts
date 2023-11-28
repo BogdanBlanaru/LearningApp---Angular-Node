@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselComponent } from '../../../shared/carousel/carousel.component';
 
@@ -7,8 +7,7 @@ import { CarouselComponent } from '../../../shared/carousel/carousel.component';
   standalone: true,
   imports: [CommonModule, CarouselComponent],
   templateUrl: './featured-articles.component.html',
-  styleUrl: './featured-articles.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './featured-articles.component.scss'
 })
 export class FeaturedArticlesComponent {
   @Input() topicName: string = '';

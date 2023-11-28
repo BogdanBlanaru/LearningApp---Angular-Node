@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
 import { MediumArticlesService } from '../../services/medium-articles.service';
@@ -16,8 +16,7 @@ interface ResponsiveOptions {
   standalone: true,
   imports: [CommonModule, CarouselModule],
   templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent implements OnInit, OnChanges, OnDestroy {
   private subscription: Subscription = new Subscription();
