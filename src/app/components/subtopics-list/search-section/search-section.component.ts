@@ -18,20 +18,22 @@ export class SearchSectionComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (this.subtopicsSearchValue) {
-      this.subscription = fromEvent(this.subtopicsSearchValue.nativeElement as HTMLInputElement, 'keyup')
-        .pipe(
-          map((event: Event) => {
-            return (event.target as HTMLInputElement).value;
-          }),
+      this.subscription.add(
+        fromEvent(this.subtopicsSearchValue.nativeElement as HTMLInputElement, 'keyup')
+          .pipe(
+            map((event: Event) => {
+              return (event.target as HTMLInputElement).value;
+            }),
 
-          filter(res => res.length > 3),
-          debounceTime(1000),
-          distinctUntilChanged()
-        )
-        .subscribe((text: string) => {
-          this.searchedTitle = text.toLowerCase();
-          this.searchedValueSent.emit(this.searchedTitle);
-        });
+            filter(res => res.length > 3),
+            debounceTime(1000),
+            distinctUntilChanged()
+          )
+          .subscribe((text: string) => {
+            this.searchedTitle = text.toLowerCase();
+            this.searchedValueSent.emit(this.searchedTitle);
+          })
+      );
     }
   }
 

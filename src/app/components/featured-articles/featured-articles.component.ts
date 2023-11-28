@@ -17,14 +17,12 @@ export class FeaturedArticlesComponent implements OnInit, OnChanges, OnDestroy {
   @Input() topicName: string = '';
   autoplayInterval: number = 3000;
   responsiveOptions?: CarouselResponsiveOptions[];
-  articles$: Observable<ArticleItems[] | []> = new Observable();
-  articlesByTopic: ArticleItems[] | [] = [];
+  articles$: Observable<ArticleItems[]> = new Observable();
+  articlesByTopic: ArticleItems[] = [];
   private subscription: Subscription = new Subscription();
 
   constructor(private articlesService: ArticlesService) {
-    this.articles$ = this.articlesService
-      .getArticles()
-      .pipe(map((el: Article) => el.items.map((article: ArticleItems) => article)));
+    this.articles$ = this.articlesService.getArticles().pipe(map((el: Article) => el.items));
   }
 
   ngOnInit(): void {
@@ -49,9 +47,11 @@ export class FeaturedArticlesComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['topicName']) {
-      this.subscription = this.articles$.subscribe((articles: ArticleItems[]) => {
-        this.articlesByTopic = this.articlesService.getListOfArticlesByTopicName(this.topicName, articles);
-      });
+      this.subscription.add(
+        this.articles$.subscribe((articles: ArticleItems[]) => {
+          this.articlesByTopic = this.articlesService.getListOfArticlesByTopicName(this.topicName, articles);
+        })
+      );
     }
   }
 
