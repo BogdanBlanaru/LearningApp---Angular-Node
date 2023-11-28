@@ -7,7 +7,7 @@ import { Article, ArticleItems } from '../models/article.model';
   providedIn: 'root'
 })
 export class MediumArticlesService {
-  private apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@rashedul-alam';
+  private apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@mgechev';
 
   constructor(private http: HttpClient) {}
 
