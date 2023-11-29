@@ -1,5 +1,8 @@
 <div class="flex">
-  <app-aside-menu (topicName)="getTopicName($event)"></app-aside-menu>
+  <app-aside-menu
+    (topicName)="getTopicName($event)"
+    (openedAsideMenu)="getOpenedAsideMenuBoolean($event)"
+  ></app-aside-menu>
   <div class="flex flex-col">
     <div class="p-4 sm:max-w-4xl">
       <app-featured-articles [topicName]="topicName"></app-featured-articles>
@@ -8,4 +11,7 @@
       <app-subtopics-list [topicName]="topicName"></app-subtopics-list>
     </div>
   </div>
+</div>
+<div [class.footer]="!openedAsideMenu">
+  <app-footer></app-footer>
 </div>

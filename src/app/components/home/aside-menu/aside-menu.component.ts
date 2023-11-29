@@ -16,6 +16,7 @@ export class AsideMenuComponent implements OnInit {
   protected selectedTopic?: string;
   protected topicsList?: Topic[];
   @Output() topicName = new EventEmitter<string>();
+  @Output() openedAsideMenu = new EventEmitter<boolean>();
 
   constructor(private topicService: TopicService) {}
 
@@ -27,6 +28,7 @@ export class AsideMenuComponent implements OnInit {
     this.isOpen = !this.isOpen;
     this.selectedTopic = '';
     this.sendTopicNameToParentComponent('');
+    this.openedAsideMenu.emit(this.isOpen);
   }
 
   selectTopic(topic: string) {
