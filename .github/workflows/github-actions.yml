@@ -27,7 +27,7 @@ jobs:
       - name: Check final status
         #        if: success()
         run: |
-          echo "Build output: ${{ needs.set_variable.outputs.build_output }}"
+          echo "Build output: ${{ needs.buildmf.outputs.build_output }}"
 
       - name: Lint files
         run: npm run format
