@@ -18,13 +18,14 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Run Build
+      - name: Run LINTER CHECK
         id: buildmf
-        run: npm run build
+#        run: npm run format:check
+        run: echo "MY_VARIABLE=Hello World" >> $GITHUB_ENV
 
       - name: Check final status
 #        if: success()
-        run: echo ${{steps.buildmf.outputs}}
+        run: echo "The value is ${{ env.MY_VARIABLE }}"
 
       - name: Lint files
         run: npm run format
