@@ -24,12 +24,11 @@ jobs:
         id: buildmf
         run: |
           OUTPUT=$(npm run format:check)
-          echo "${OUTPUT}"
+          echo "test=${OUTPUT}" >> "$GITHUB_OUTPUT"
 
-#      - name: Check final status
-        #        if: success()
-#        run: |
-#          echo "Build output: ${{ needs.buildmf.outputs.build_output }}"
+      - name: Check final status
+        run: |
+          echo "here we are: ${{buildmf.outputs.test}}"
 
       - name: Lint files
         run: npm run format
