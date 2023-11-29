@@ -4,8 +4,6 @@ on: [push, pull_request]
 jobs:
   Build-Lint:
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.buildmf.outputs.test }}
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -20,17 +18,11 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Run LINTER CHECK
-        id: buildmf
-        run: |
-          OUTPUT=$(npm run format:check)
-          echo "test=${OUTPUT}" >> "$GITHUB_OUTPUT"
-
-      - name: Check final status
-        run: |
-          echo "here we are: ${{steps.buildmf.outputs.test}}"
+      - name: Run Build
+        run: npm run build
 
       - name: Lint files
+        if: success()
         run: npm run format
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
