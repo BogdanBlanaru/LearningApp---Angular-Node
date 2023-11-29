@@ -19,10 +19,14 @@ jobs:
         run: npm i
 
       - name: Run Build
+        id: buildmf
         run: npm run build
 
       - name: Check final status
-        if: success()
-        run: echo "Successfully built angular app"
+#        if: success()
+        run: echo ${{steps}}
+
+      - name: Lint files
+        run: npm run format
 
       - run: echo "🍏 This job's status is ${{ job.status }}."

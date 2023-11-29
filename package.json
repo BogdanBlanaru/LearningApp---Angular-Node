@@ -16,11 +16,11 @@
       "git add"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
+//  "husky": {
+//    "hooks": {
+//      "pre-commit": "lint-staged"
+//    }
+//  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.0.0",
