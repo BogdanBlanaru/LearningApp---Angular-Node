@@ -20,12 +20,14 @@ jobs:
 
       - name: Run LINTER CHECK
         id: buildmf
-#        run: npm run format:check
-        run: echo "MY_VARIABLE=Hello World" >> $GITHUB_ENV
+        run: |
+          OUTPUT=$(npm run format:check)
+          echo "OUTPUT_VAR=${OUTPUT}" >> $GITHUB_ENV
+          echo "Build output: ${OUTPUT}"
 
       - name: Check final status
 #        if: success()
-        run: echo "The value is ${{ env.MY_VARIABLE }}"
+        run: echo "The value is ${{ env.OUTPUT_VAR }}"
 
       - name: Lint files
         run: npm run format
