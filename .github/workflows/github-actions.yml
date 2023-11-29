@@ -11,7 +11,18 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
+      - name: Install dependencies
+        run: npm i
+
+      - name: Run Build
+        run: npm run build
+
+      - name: Check final status
+        if: success()
+        run: echo "Successfully built angular app"
+        
       - run: echo "🍏 This job's status is ${{ job.status }}."
