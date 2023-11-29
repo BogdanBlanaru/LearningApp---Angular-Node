@@ -4,6 +4,8 @@ on: [push, pull_request]
 jobs:
   Build-Lint:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.buildmf.outputs.test }}
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -22,12 +24,12 @@ jobs:
         id: buildmf
         run: |
           OUTPUT=$(npm run format:check)
-          echo "::set-output name=build_output::${OUTPUT}"
+          echo "${OUTPUT}"
 
-      - name: Check final status
+#      - name: Check final status
         #        if: success()
-        run: |
-          echo "Build output: ${{ needs.buildmf.outputs.build_output }}"
+#        run: |
+#          echo "Build output: ${{ needs.buildmf.outputs.build_output }}"
 
       - name: Lint files
         run: npm run format
