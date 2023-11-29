@@ -24,7 +24,7 @@ jobs:
 
       - name: Check final status
 #        if: success()
-        run: echo ${{steps}}
+        run: echo ${{steps.buildmf}}
 
       - name: Lint files
         run: npm run format
