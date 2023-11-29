@@ -22,11 +22,11 @@ jobs:
         id: buildmf
         run: |
           OUTPUT=$(npm run build)
-          echo "OUTPUT_VAR=${OUTPUT}" >> $GITHUB_ENV
-          echo "Build output: ${OUTPUT}"
+          echo "OUTPUT_VAR=${{OUTPUT}}" >> $GITHUB_ENV
+          echo "Build output: ${{OUTPUT}}"
 
       - name: Check final status
-#        if: success()
+        #        if: success()
         run: echo "The value is ${{ env.OUTPUT_VAR }}"
 
       - name: Lint files
