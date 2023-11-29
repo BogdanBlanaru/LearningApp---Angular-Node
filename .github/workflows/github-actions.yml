@@ -21,7 +21,7 @@ jobs:
       - name: Run LINTER CHECK
         id: buildmf
         run: |
-          OUTPUT=$(npm run build)
+          OUTPUT=$(npm run format:check)
           echo "::set-output name=build_output::${OUTPUT}"
 
       - name: Check final status
