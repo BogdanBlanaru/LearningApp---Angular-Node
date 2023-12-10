@@ -19,7 +19,7 @@ export class RegisterComponent {
 
   inSubmission = false;
 
-  name = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  username = new FormControl('', [Validators.required, Validators.minLength(3)]);
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [
     Validators.required,
@@ -33,7 +33,7 @@ export class RegisterComponent {
 
   registerForm = new FormGroup(
     {
-      name: this.name,
+      username: this.username,
       email: this.email,
       password: this.password,
       confirm_password: this.confirm_password
