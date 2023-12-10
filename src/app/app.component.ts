@@ -5,12 +5,14 @@ import { SubtopicModalComponent } from './components/home/subtopics-list/subtopi
 import { ModalService } from './services/modal.service';
 import { MediumArticlesService } from './services/medium-articles.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthModalComponent } from './components/user/auth-modal/auth-modal.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HomeComponent, SubtopicModalComponent, HttpClientModule],
-  providers: [ModalService, MediumArticlesService],
+  imports: [CommonModule, HomeComponent, AuthModalComponent, SubtopicModalComponent, HttpClientModule],
+  providers: [ModalService, MediumArticlesService, AuthService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
