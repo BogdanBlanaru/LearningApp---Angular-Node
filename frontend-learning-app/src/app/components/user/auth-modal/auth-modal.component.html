@@ -1,0 +1,11 @@
+<app-modal modalID="auth">
+  <p class="text-2xl font-bold" heading>Your Account</p>
+
+  <div *ngIf="!isRegistered">
+    <app-register (isRegistered)="checkRegisteredUser($event)"></app-register>
+  </div>
+
+  <div *ngIf="isRegistered">
+    <app-login (isRegistered)="checkRegisteredUser($event)"></app-login>
+  </div>
+</app-modal>
