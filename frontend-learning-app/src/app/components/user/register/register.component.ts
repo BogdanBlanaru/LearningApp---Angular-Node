@@ -48,7 +48,7 @@ export class RegisterComponent implements OnDestroy {
   public async register() {
     this.subscription.add(
       this.auth.createUser(this.registerForm.value as User).subscribe(
-        res => {
+        () => {
           this.alertColor = 'green';
           this.alertMsg = 'Success! Your account has been created.';
           this.redirectToLoginForm();
