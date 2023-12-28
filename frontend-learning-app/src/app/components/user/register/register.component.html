@@ -1,0 +1,40 @@
+<app-alert *ngIf="showAlert" [color]="alertColor" class="mb-3">
+  {{ alertMsg }}
+</app-alert>
+
+<div class="mb-3 w-full text-center">
+  <p>
+    <b class="cursor-pointer hover:underline" (click)="redirectToLoginForm()">Go to LOGIN</b>
+  </p>
+</div>
+
+<form>
+  <!-- Username -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Username</label>
+    <app-input [control]="username" placeholder="Enter Username"></app-input>
+  </div>
+  <!-- Email -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Email</label>
+    <app-input [control]="email" type="email" placeholder="Enter Email"></app-input>
+  </div>
+  <!-- Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Password</label>
+    <app-input [control]="password" type="password" placeholder="Enter Password"></app-input>
+  </div>
+  <!-- Confirm Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Confirm Password</label>
+    <app-input [control]="confirm_password" type="password" placeholder="Confirm Password"></app-input>
+  </div>
+  <button
+    type="submit"
+    (click)="register()"
+    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400"
+    [disabled]="!registerForm.valid || inSubmission"
+  >
+    REGISTER
+  </button>
+</form>

@@ -1,0 +1,31 @@
+<app-alert *ngIf="showAlert" [color]="alertColor">
+  {{ alertMsg }}
+</app-alert>
+
+<form class="mb-3">
+  <!-- Username -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Username</label>
+    <app-input [control]="username" placeholder="Enter Username"></app-input>
+  </div>
+  <!-- Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Password</label>
+    <app-input [control]="password" type="password" placeholder="Enter Password"></app-input>
+  </div>
+  <button
+    type="submit"
+    (click)="login()"
+    [disabled]="!loginForm.valid || inSubmission"
+    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400"
+  >
+    LOGIN
+  </button>
+</form>
+
+<div>
+  <p>
+    You don't have an account yet?
+    <b class="cursor-pointer hover:underline" (click)="goToRegisterForm()">Create one here!</b>
+  </p>
+</div>
