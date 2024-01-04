@@ -2,12 +2,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Topic } from '../../../models/topic.model';
 import { TopicService } from '../../../services/topic.service';
+import { ModalService } from '../../../services/modal.service';
+
+const MODALID = 'add-subtopic';
 
 @Component({
   selector: 'app-aside-menu',
   standalone: true,
   imports: [CommonModule],
-  providers: [TopicService],
   templateUrl: './aside-menu.component.html',
   styleUrl: './aside-menu.component.scss'
 })
@@ -18,10 +20,14 @@ export class AsideMenuComponent implements OnInit {
   @Output() topicName = new EventEmitter<string>();
   @Output() openedAsideMenu = new EventEmitter<boolean>();
 
-  constructor(private topicService: TopicService) {}
+  constructor(
+    private topicService: TopicService,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit(): void {
     this.topicsList = this.topicService.getListOfTopics();
+    this.topicService.getListOfSubtopics().subscribe(el => (this.topicService.subtopicsList = el));
   }
 
   toggleAsideMenu() {
@@ -38,5 +44,9 @@ export class AsideMenuComponent implements OnInit {
 
   sendTopicNameToParentComponent(topic: string) {
     this.topicName.emit(topic);
+  }
+
+  openAddSubtopicModal() {
+    this.modalService.toggleModal(MODALID);
   }
 }

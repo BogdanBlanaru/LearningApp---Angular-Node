@@ -1,6 +1,7 @@
 export interface SubTopic {
-  id: number;
   title: string;
+  category: string;
+  subcategory?: string;
   description: string;
   content: string;
 }

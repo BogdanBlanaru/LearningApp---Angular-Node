@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
-import topicsRoute from "./routes/topics.js";
+import subtopicsRoute from "./routes/subtopics.js";
 import usersRoute from "./routes/user.js";
 import cookieParser from "cookie-parser";
 
@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
 });
 
 app.use("/api/auth", authRoute);
-app.use("/api/topicsList", topicsRoute);
+app.use("/api/subtopicsList", subtopicsRoute);
 app.use("/api/users", usersRoute);
 
 app.use((err, req, res, next) => {
