@@ -2,6 +2,8 @@ import { Component, HostListener, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../services/modal.service';
 
+const MODALID = 'auth';
+
 @Component({
   selector: 'app-modal',
   standalone: true,
@@ -15,7 +17,7 @@ export class ModalComponent {
   constructor(public modal: ModalService) {}
 
   closeModal() {
-    if (this.modalID !== 'auth') {
+    if (this.modalID !== MODALID) {
       this.modal.toggleModal(this.modalID);
     }
   }

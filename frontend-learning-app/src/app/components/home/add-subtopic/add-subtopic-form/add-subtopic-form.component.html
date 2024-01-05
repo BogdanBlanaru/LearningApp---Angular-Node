@@ -1,0 +1,39 @@
+<app-alert *ngIf="showAlert" [color]="alertColor" class="mb-3">
+  {{ alertMsg }}
+</app-alert>
+
+<form>
+  <!-- Title -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Add title</label>
+    <app-input [control]="title" placeholder="Enter Title"></app-input>
+  </div>
+  <!-- Category -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Add category</label>
+    <app-input [control]="category" placeholder="Enter Category"></app-input>
+  </div>
+  <!-- Subcategory -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Add Subcategory</label>
+    <app-input [control]="subcategory" placeholder="Enter Subcategory"></app-input>
+  </div>
+  <!-- Description -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Add description</label>
+    <app-input [control]="description" placeholder="Enter Description"></app-input>
+  </div>
+  <!-- Content -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Add content</label>
+    <app-input [control]="content" placeholder="Enter Content"></app-input>
+  </div>
+  <button
+    type="submit"
+    (click)="addSubtopic()"
+    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400"
+    [disabled]="!addSubtopicForm.valid || inSubmission"
+  >
+    ADD SUBTOPIC
+  </button>
+</form>

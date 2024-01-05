@@ -8,6 +8,8 @@ import { RegisteredUser } from '../../../models/user.model';
 import { Subscription } from 'rxjs';
 import { ModalService } from '../../../services/modal.service';
 
+const MODALID = 'auth';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -48,7 +50,7 @@ export class LoginComponent implements OnDestroy {
           this.alertMsg = 'Success! You are now logged in.';
           this.alertColor = 'green';
           setTimeout(() => {
-            this.modalService.toggleModal('auth');
+            this.modalService.toggleModal(MODALID);
           }, 2500);
         },
         error => {

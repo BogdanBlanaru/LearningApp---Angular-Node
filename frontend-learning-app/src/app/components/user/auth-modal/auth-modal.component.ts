@@ -6,6 +6,8 @@ import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../../../services/auth.service';
 
+const MODALID = 'auth';
+
 @Component({
   selector: 'app-auth-modal',
   standalone: true,
@@ -22,11 +24,11 @@ export class AuthModalComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.modalService.register('auth');
+    this.modalService.register(MODALID);
     const userData = JSON.parse(localStorage.getItem('LearningAppUserData')!);
 
     if (!userData) {
-      this.modalService.toggleModal('auth');
+      this.modalService.toggleModal(MODALID);
     }
   }
 
@@ -35,6 +37,6 @@ export class AuthModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.modalService.unregister('auth');
+    this.modalService.unregister(MODALID);
   }
 }
