@@ -16,7 +16,6 @@ import { Subcategory } from '../../../models/subcategory.model';
 export class SubtopicsListComponent implements OnChanges {
   @Input() topicName: string = '';
   protected subcategoriesList?: Subcategory[];
-  protected subcategory?: string;
   protected searchedSubtopic?: string;
 
   constructor(private topicService: TopicService) {}
@@ -37,12 +36,10 @@ export class SubtopicsListComponent implements OnChanges {
     }
   }
 
-  toggleSubcategory(subcategory?: string, isOpen?: boolean) {
+  toggleSubcategory(subcategory?: string) {
     const modifiedSubcategories = this.subcategoriesList?.map(el =>
       el?.title?.toLowerCase() === subcategory?.toLowerCase() ? { ...el, isOpen: !el.isOpen } : el
     );
     this.subcategoriesList = modifiedSubcategories;
-
-    this.subcategory = subcategory;
   }
 }
