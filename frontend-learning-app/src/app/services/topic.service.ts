@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, map, Subject } from 'rxjs';
 import { SubTopic } from '../models/subtopic.model';
-import { Topic } from '../models/topic.model';
 import { HttpClient } from '@angular/common/http';
+import { Subcategory } from '../models/subcategory.model';
 
 const BASEURL = 'http://localhost:8800';
 
@@ -11,36 +11,13 @@ const BASEURL = 'http://localhost:8800';
 })
 export class TopicService {
   public subtopicsList?: SubTopic[];
-  TOPICSLIST: Topic[] = [
-    {
-      name: 'HTML'
-    },
-    {
-      name: 'CSS/SCSS'
-    },
-    {
-      name: 'JAVASCRIPT'
-    },
-    {
-      name: 'ANGULAR'
-    },
-    {
-      name: 'REACT'
-    },
-    {
-      name: 'JAVA'
-    }
-  ];
+  private listOfSubcategories?: string[] = [];
 
   protected listOfSubtopics: SubTopic[] = [];
   private readonly currentSubtopic = new Subject<SubTopic>();
   currentSubtopic$ = this.currentSubtopic.asObservable();
 
   constructor(private http: HttpClient) {}
-
-  getListOfTopics(): Topic[] {
-    return this.TOPICSLIST;
-  }
 
   getListOfSubtopics(): Observable<SubTopic[]> {
     return this.http.get(`${BASEURL}/api/subtopicsList`).pipe(map(response => <SubTopic[]>(<unknown>response)));
@@ -61,21 +38,51 @@ export class TopicService {
     return [];
   }
 
-  getSubtopicBySearchedValue(searchedValue: string, topicName: string): SubTopic[] | [] {
-    return this.listOfSubtopics.filter(
-      el =>
-        el.title.toLowerCase().includes(searchedValue) ||
-        el.description.toLowerCase().includes(searchedValue) ||
-        el.content.toLowerCase().includes(searchedValue)
+  getListOfSubcategoriesByTopicName(topic: string): Subcategory[] {
+    const matchingSubcategoriesList: Subcategory[] = [];
+    this.listOfSubcategories = this.subtopicsList
+      ?.filter(value => value.category.toLowerCase() === topic.toLowerCase())
+      .map(item => item.subcategory)
+      .filter((value, index, self) => self.indexOf(value) === index);
+
+    const matchingSubcategories = this.listOfSubcategories?.map(el =>
+      matchingSubcategoriesList.push({
+        title: el,
+        isOpen: false,
+        subtopics: this.subtopicsList?.filter(subtopic => subtopic.subcategory === el)
+      })
     );
+
+    if (matchingSubcategories) {
+      return matchingSubcategoriesList;
+    }
+
+    return [];
+  }
+
+  getSubtopicBySearchedValue(searchedValue: string): Subcategory[] {
+    const matchingSubcategoriesList: Subcategory[] = [];
+    const matchingSubcategories = this.listOfSubcategories?.map(el =>
+      matchingSubcategoriesList.push({
+        title: el,
+        isOpen: true,
+        subtopics: this.subtopicsList?.filter(
+          subtopic =>
+            subtopic.subcategory === el &&
+            (subtopic.title.toLowerCase().includes(searchedValue) ||
+              subtopic.description.toLowerCase().includes(searchedValue))
+        )
+      })
+    );
+
+    if (matchingSubcategories) {
+      return matchingSubcategoriesList;
+    }
+
+    return [];
   }
 
   setCurrentSubtopic(subtopic: SubTopic) {
     this.currentSubtopic.next(subtopic);
   }
-
-  // Maybe it will be used
-  // getSubtopicById(id: number): SubTopic {
-  //   return this.listOfSubtopics.find(el => el.id === id)!;
-  // }
 }

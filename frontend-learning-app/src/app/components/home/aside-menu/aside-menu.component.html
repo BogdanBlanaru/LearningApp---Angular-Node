@@ -5,12 +5,8 @@
   </div>
   <div *ngIf="isOpen">
     <ul *ngFor="let topic of topicsList">
-      <li
-        class="mb-2 mt-2 p-4 cursor-pointer"
-        [class.selected]="selectedTopic === topic.name"
-        (click)="selectTopic(topic.name)"
-      >
-        <a>{{ topic.name }}</a>
+      <li class="mb-2 mt-2 p-4 cursor-pointer" [class.selected]="selectedTopic === topic" (click)="selectTopic(topic)">
+        <a>{{ topic }}</a>
       </li>
     </ul>
   </div>
