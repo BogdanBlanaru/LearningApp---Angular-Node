@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { SubTopic } from '../../../../models/subtopic.model';
 import { ModalService } from '../../../../services/modal.service';
 import { TopicService } from '../../../../services/topic.service';
+import { TruncatePipe } from '../../../../pipes/truncate.pipe';
 
 const MODALID = 'subtopic';
 @Component({
   selector: 'app-subtopic',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TruncatePipe],
   templateUrl: './subtopic.component.html',
   styleUrl: './subtopic.component.scss'
 })

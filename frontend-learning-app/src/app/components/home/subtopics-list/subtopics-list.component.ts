@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 import { CommonModule } from '@angular/common';
 import { SubtopicComponent } from './subtopic/subtopic.component';
 import { TopicService } from '../../../services/topic.service';
-import { SubTopic } from '../../../models/subtopic.model';
 import { SearchSectionComponent } from './search-section/search-section.component';
+import { Subcategory } from '../../../models/subcategory.model';
 
 @Component({
   selector: 'app-subtopics-list',
@@ -15,14 +15,15 @@ import { SearchSectionComponent } from './search-section/search-section.componen
 })
 export class SubtopicsListComponent implements OnChanges {
   @Input() topicName: string = '';
-  protected subtopics?: SubTopic[];
+  protected subcategoriesList?: Subcategory[];
+  protected subcategory?: string;
   protected searchedSubtopic?: string;
 
   constructor(private topicService: TopicService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['topicName'] && !changes['topicName'].firstChange) {
-      this.subtopics = this.topicService.getListOfSubtopicsByTopicName(this.topicName);
+      this.subcategoriesList = this.topicService.getListOfSubcategoriesByTopicName(this.topicName);
     }
   }
 
@@ -30,9 +31,18 @@ export class SubtopicsListComponent implements OnChanges {
     this.searchedSubtopic = event.trim();
 
     if (this.searchedSubtopic.length > 0) {
-      this.subtopics = this.topicService.getSubtopicBySearchedValue(this.searchedSubtopic, this.topicName);
+      this.subcategoriesList = this.topicService.getSubtopicBySearchedValue(this.searchedSubtopic);
     } else {
-      this.subtopics = this.topicService.getListOfSubtopicsByTopicName(this.topicName);
+      this.subcategoriesList = this.topicService.getListOfSubcategoriesByTopicName(this.topicName);
     }
+  }
+
+  toggleSubcategory(subcategory?: string, isOpen?: boolean) {
+    const modifiedSubcategories = this.subcategoriesList?.map(el =>
+      el?.title?.toLowerCase() === subcategory?.toLowerCase() ? { ...el, isOpen: !el.isOpen } : el
+    );
+    this.subcategoriesList = modifiedSubcategories;
+
+    this.subcategory = subcategory;
   }
 }

@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Topic } from '../../../models/topic.model';
 import { TopicService } from '../../../services/topic.service';
 import { ModalService } from '../../../services/modal.service';
+import { Subscription } from 'rxjs';
 
 const MODALID = 'add-subtopic';
 
@@ -13,10 +13,11 @@ const MODALID = 'add-subtopic';
   templateUrl: './aside-menu.component.html',
   styleUrl: './aside-menu.component.scss'
 })
-export class AsideMenuComponent implements OnInit {
+export class AsideMenuComponent implements OnInit, OnDestroy {
   protected isOpen: boolean = false;
   protected selectedTopic?: string;
-  protected topicsList?: Topic[];
+  protected topicsList?: string[];
+  private subscription = new Subscription();
   @Output() topicName = new EventEmitter<string>();
   @Output() openedAsideMenu = new EventEmitter<boolean>();
 
@@ -26,8 +27,14 @@ export class AsideMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.topicsList = this.topicService.getListOfTopics();
-    this.topicService.getListOfSubtopics().subscribe(el => (this.topicService.subtopicsList = el));
+    this.subscription.add(
+      this.topicService.getListOfSubtopics().subscribe(el => {
+        this.topicService.subtopicsList = el;
+        this.topicsList = this.topicService.subtopicsList
+          .map(item => item.category.toUpperCase())
+          .filter((value, index, self) => self.indexOf(value) === index);
+      })
+    );
   }
 
   toggleAsideMenu() {
@@ -48,5 +55,9 @@ export class AsideMenuComponent implements OnInit {
 
   openAddSubtopicModal() {
     this.modalService.toggleModal(MODALID);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

@@ -1,5 +1,19 @@
 <app-search-section *ngIf="topicName" (searchedValueSent)="searchSubtopic($event)"></app-search-section>
 <h3>{{ topicName }}</h3>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-  <app-subtopic *ngFor="let subtopic of subtopics" [subtopicName]="subtopic"> </app-subtopic>
+
+<div class="mt-6" *ngFor="let subcategory of subcategoriesList">
+  <div class="bg-secondary text-white p-2 w-[60vw] text-center rounded-md">
+    <div
+      class="text-lg font-semibold cursor-pointer flex justify-between w-[90%] ml-[5%] mr-[5%]"
+      (click)="toggleSubcategory(subcategory.title, subcategory.isOpen)"
+    >
+      <h2>{{ subcategory.title }}</h2>
+      <span class="mt-[1%] text-sm flex justify-center align-center">{{
+        subcategory?.isOpen ? '\u25B2' : '\u25BC'
+      }}</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" *ngIf="subcategory.isOpen">
+    <app-subtopic *ngFor="let subtopic of subcategory.subtopics" [subtopicName]="subtopic"> </app-subtopic>
+  </div>
 </div>
