@@ -7,11 +7,19 @@
   ></app-aside-menu>
 
   <section class="z-40 absolute w-full" [ngStyle]="{ display: isStarted ? 'none' : 'block' }">
-    <img class="w-full h-[71vh] object-cover absolute z-0" src="assets/CoverImage.png" />
+    <img
+      class="w-full h-[50vh] object-fill absolute z-0 sm:object-cover md:h-[71vh]"
+      srcset="assets/CoverImage-small.png 320w, assets/CoverImage-medium.png 768w, assets/CoverImage-large.png 1200w"
+      sizes="(max-width: 320px) 280px,
+         (max-width: 768px) 720px,
+         1200px"
+      src="assets/CoverImage-large.png"
+      loading="eager"
+    />
 
-    <div class="bg-gradient absolute w-full h-[71vh] z-40 opacity-60"></div>
+    <div class="bg-gradient absolute w-full h-[50vh] z-40 opacity-60 md:h-[71vh]"></div>
 
-    <div class="w-full h-[71vh] absolute z-40">
+    <div class="w-full h-[50vh] absolute z-40 md:h-[71vh]">
       <div class="cube"></div>
       <div class="cube"></div>
       <div class="cube"></div>
@@ -21,11 +29,11 @@
 
     <div class="container mx-auto relative z-50 top-[16vh]">
       <div class="text-center px-20 w-full md:w-8/12 mx-auto text-white">
-        <h1 class="text-6xl font-bold uppercase mb-2">Explore! Learn! Succeed!</h1>
+        <h1 class="text-lg md:text-6xl font-bold uppercase mb-2">Explore! Learn! Succeed!</h1>
         <p>Navigate the path of success through exploration and learning. Your journey to success starts here!</p>
         <button
           (click)="getStarted()"
-          class="mt-[4%] font-bold w-[23%] text-white bg-sky-800 py-6 rounded-[50%] transition hover:bg-sky-900"
+          class="mt-[4%] border-2 ring-2 ring-sky-400 text-[0.60rem] md:text-base font-bold w-[20%] md:w-[25%] text-white bg-sky-800 py-2 md:py-5 rounded-[25%] transition hover:bg-sky-900 hover:transform hover:duration-1000 hover:translate-y-[-8%]"
         >
           GET STARTED
         </button>
