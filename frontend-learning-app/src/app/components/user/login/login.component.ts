@@ -14,8 +14,7 @@ const MODALID = 'auth';
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, AlertComponent, InputComponent, FormsModule, ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnDestroy {
   private subscription: Subscription = new Subscription();

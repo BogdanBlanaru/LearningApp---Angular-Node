@@ -9,12 +9,12 @@ import { FooterComponent } from '../footer/footer.component';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, AsideMenuComponent, SubtopicsListComponent, FeaturedArticlesComponent, FooterComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
   topicName: string = '';
   openedAsideMenu: boolean = false;
+  isStarted: boolean = false;
 
   getTopicName(event: string) {
     this.topicName = event;
@@ -22,5 +22,9 @@ export class HomeComponent {
 
   getOpenedAsideMenuBoolean(event: boolean) {
     this.openedAsideMenu = event;
+  }
+
+  getStarted() {
+    this.isStarted = true;
   }
 }

@@ -6,8 +6,7 @@ import { debounceTime, distinctUntilChanged, fromEvent, map, Subscription } from
   selector: 'app-search-section',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './search-section.component.html',
-  styleUrl: './search-section.component.scss'
+  templateUrl: './search-section.component.html'
 })
 export class SearchSectionComponent implements AfterViewInit, OnDestroy {
   protected searchedTitle: string = '';

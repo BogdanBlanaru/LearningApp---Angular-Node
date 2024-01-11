@@ -12,8 +12,7 @@ const MODALID = 'auth';
   selector: 'app-auth-modal',
   standalone: true,
   imports: [CommonModule, ModalComponent, RegisterComponent, LoginComponent],
-  templateUrl: './auth-modal.component.html',
-  styleUrl: './auth-modal.component.scss'
+  templateUrl: './auth-modal.component.html'
 })
 export class AuthModalComponent implements OnInit, OnDestroy {
   isRegistered: boolean = true;

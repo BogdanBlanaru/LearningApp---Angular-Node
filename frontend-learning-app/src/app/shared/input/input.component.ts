@@ -6,8 +6,7 @@ import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/f
   selector: 'app-input',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.scss'
+  templateUrl: './input.component.html'
 })
 export class InputComponent {
   @Input() control: UntypedFormControl = new UntypedFormControl();

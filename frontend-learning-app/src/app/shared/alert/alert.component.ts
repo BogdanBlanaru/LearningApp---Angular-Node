@@ -6,8 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule],
-  templateUrl: './alert.component.html',
-  styleUrl: './alert.component.scss'
+  templateUrl: './alert.component.html'
 })
 export class AlertComponent {
   @Input() color = 'blue';

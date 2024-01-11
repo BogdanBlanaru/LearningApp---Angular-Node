@@ -10,8 +10,7 @@ const MODALID = 'subtopic';
   selector: 'app-subtopic',
   standalone: true,
   imports: [CommonModule, TruncatePipe],
-  templateUrl: './subtopic.component.html',
-  styleUrl: './subtopic.component.scss'
+  templateUrl: './subtopic.component.html'
 })
 export class SubtopicComponent {
   @Input() subtopicName?: SubTopic;

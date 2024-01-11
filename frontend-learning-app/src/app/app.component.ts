@@ -22,8 +22,7 @@ import { TopicService } from './services/topic.service';
     HttpClientModule
   ],
   providers: [ModalService, MediumArticlesService, TopicService, AuthService],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'frontend-learning-app';
