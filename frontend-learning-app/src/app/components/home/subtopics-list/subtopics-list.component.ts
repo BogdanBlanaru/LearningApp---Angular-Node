@@ -10,7 +10,6 @@ import { Subcategory } from '../../../models/subcategory.model';
   standalone: true,
   imports: [CommonModule, SubtopicComponent, SearchSectionComponent],
   templateUrl: './subtopics-list.component.html',
-  styleUrl: './subtopics-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubtopicsListComponent implements OnChanges {

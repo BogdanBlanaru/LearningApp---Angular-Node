@@ -12,8 +12,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-register',
   standalone: true,
   imports: [CommonModule, InputComponent, AlertComponent],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnDestroy {
   private subscription: Subscription = new Subscription();

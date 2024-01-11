@@ -10,8 +10,7 @@ const MODALID = 'add-subtopic';
   selector: 'app-add-subtopic-modal',
   standalone: true,
   imports: [CommonModule, ModalComponent, AddSubtopicFormComponent],
-  templateUrl: './add-subtopic-modal.component.html',
-  styleUrl: './add-subtopic-modal.component.scss'
+  templateUrl: './add-subtopic-modal.component.html'
 })
 export class AddSubtopicModalComponent implements OnInit, OnDestroy {
   constructor(private modalService: ModalService) {}

@@ -11,8 +11,7 @@ import { TopicService } from '../../../../services/topic.service';
   selector: 'app-add-subtopic-form',
   standalone: true,
   imports: [CommonModule, InputComponent, AlertComponent],
-  templateUrl: './add-subtopic-form.component.html',
-  styleUrl: './add-subtopic-form.component.scss'
+  templateUrl: './add-subtopic-form.component.html'
 })
 export class AddSubtopicFormComponent {
   private subscription: Subscription = new Subscription();

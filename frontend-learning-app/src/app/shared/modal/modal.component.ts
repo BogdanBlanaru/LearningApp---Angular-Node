@@ -8,8 +8,7 @@ const MODALID = 'auth';
   selector: 'app-modal',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+  templateUrl: './modal.component.html'
 })
 export class ModalComponent {
   @Input() modalID = '';

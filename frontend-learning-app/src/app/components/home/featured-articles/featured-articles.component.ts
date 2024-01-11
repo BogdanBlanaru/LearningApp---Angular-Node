@@ -10,8 +10,7 @@ import { MediumArticlesService } from '../../../services/medium-articles.service
   selector: 'app-featured-articles',
   standalone: true,
   imports: [CommonModule, CarouselComponent],
-  templateUrl: './featured-articles.component.html',
-  styleUrl: './featured-articles.component.scss'
+  templateUrl: './featured-articles.component.html'
 })
 export class FeaturedArticlesComponent implements OnInit, OnChanges, OnDestroy {
   @Input() topicName: string = '';

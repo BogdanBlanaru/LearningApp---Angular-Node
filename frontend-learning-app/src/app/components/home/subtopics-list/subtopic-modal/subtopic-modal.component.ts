@@ -12,8 +12,7 @@ const MODALID = 'subtopic';
   selector: 'app-subtopic-modal',
   standalone: true,
   imports: [CommonModule, ModalComponent],
-  templateUrl: './subtopic-modal.component.html',
-  styleUrl: './subtopic-modal.component.scss'
+  templateUrl: './subtopic-modal.component.html'
 })
 export class SubtopicModalComponent implements OnInit, OnDestroy {
   private subscription$ = new Subscription();

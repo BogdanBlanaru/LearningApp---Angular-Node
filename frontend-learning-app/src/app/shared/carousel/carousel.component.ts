@@ -9,7 +9,6 @@ import { CarouselResponsiveOptions } from '../../models/carousel-responsive-opti
   standalone: true,
   imports: [CommonModule, CarouselModule],
   templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselComponent {

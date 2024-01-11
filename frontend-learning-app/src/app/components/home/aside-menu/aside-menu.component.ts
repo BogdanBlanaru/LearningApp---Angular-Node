@@ -10,8 +10,7 @@ const MODALID = 'add-subtopic';
   selector: 'app-aside-menu',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './aside-menu.component.html',
-  styleUrl: './aside-menu.component.scss'
+  templateUrl: './aside-menu.component.html'
 })
 export class AsideMenuComponent implements OnInit, OnDestroy {
   protected isOpen: boolean = false;

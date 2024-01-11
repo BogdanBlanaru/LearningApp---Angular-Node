@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-nav',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './nav.component.html',
-  styleUrl: './nav.component.scss'
+  templateUrl: './nav.component.html'
 })
 export class NavComponent {}
