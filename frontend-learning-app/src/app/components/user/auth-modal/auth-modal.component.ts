@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../../services/modal.service';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../../../services/auth.service';
+import User from '../../../models/user.model';
 
 const MODALID = 'auth';
 
@@ -14,8 +15,10 @@ const MODALID = 'auth';
   imports: [CommonModule, ModalComponent, RegisterComponent, LoginComponent],
   templateUrl: './auth-modal.component.html'
 })
-export class AuthModalComponent implements OnInit, OnDestroy {
+export class AuthModalComponent implements OnInit, OnChanges, OnDestroy {
   isRegistered: boolean = true;
+  userData?: User;
+  @Input() isStarted!: boolean;
 
   constructor(
     public modalService: ModalService,
@@ -24,10 +27,14 @@ export class AuthModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.modalService.register(MODALID);
-    const userData = JSON.parse(localStorage.getItem('LearningAppUserData')!);
+    this.userData = JSON.parse(localStorage.getItem('LearningAppUserData')!);
+  }
 
-    if (!userData) {
-      this.modalService.toggleModal(MODALID);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isStarted']) {
+      if (!this.userData && this.isStarted) {
+        this.modalService.toggleModal(MODALID);
+      }
     }
   }
 

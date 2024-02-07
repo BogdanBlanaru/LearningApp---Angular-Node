@@ -1,12 +1,13 @@
+<app-header [ngStyle]="{ display: isStarted && isLoggedIn ? 'block' : 'none' }"></app-header>
 <div class="flex">
   <app-aside-menu
-    [ngStyle]="{ display: isStarted ? 'block' : 'none' }"
+    [ngStyle]="{ display: isStarted && isLoggedIn ? 'block' : 'none' }"
     class="z-50 relative"
     (topicName)="getTopicName($event)"
     (openedAsideMenu)="getOpenedAsideMenuBoolean($event)"
   ></app-aside-menu>
 
-  <section class="z-40 absolute w-full" [ngStyle]="{ display: isStarted ? 'none' : 'block' }">
+  <section class="z-40 absolute w-full" [ngStyle]="{ display: isStarted && isLoggedIn ? 'none' : 'block' }">
     <img
       class="w-full h-[50vh] object-fill absolute z-0 sm:object-cover md:h-[71vh]"
       srcset="assets/CoverImage-small.png 320w, assets/CoverImage-medium.png 768w, assets/CoverImage-large.png 1200w"

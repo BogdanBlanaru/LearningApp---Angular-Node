@@ -1,1 +1,22 @@
-<p>header works!</p>
+<header class="bg-secondary mb-2">
+  <nav class="container mx-auto flex items-center py-8 px-4">
+    <a
+      class="text-xl md:text-2xl text-center text-indigo-400 font-bold uppercase ml-[5%] mr-[10%] md:mr-[25%]"
+      routerLink="/"
+      >Learning App</a
+    >
+
+    <a class="px-4 cursor-pointer text-center mr-[10%] md:mr-[25%]"> Welcome {{ username }}! </a>
+
+    <div class="flex flex-grow items-center">
+      <ul class="flex flex-row mt-1">
+        <li>
+          <a class="px-4 cursor-pointer" routerLink="/favorite" routerLinkActive="text-indigo-400"> My favorites</a>
+        </li>
+        <li>
+          <a class="px-4 cursor-pointer" (click)="logout()"> Logout </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

@@ -46,6 +46,7 @@ export class LoginComponent implements OnDestroy {
       this.authService.login(this.loginForm.value as RegisteredUser).subscribe(
         res => {
           localStorage.setItem('LearningAppUserData', JSON.stringify(res));
+          this.authService.loggedIn.next(JSON.parse(localStorage.getItem('LearningAppUserData')!));
           this.alertMsg = 'Success! You are now logged in.';
           this.alertColor = 'green';
           setTimeout(() => {
