@@ -26,4 +26,9 @@ import { TopicService } from './services/topic.service';
 })
 export class AppComponent {
   title = 'frontend-learning-app';
+  isStarted: boolean = false;
+
+  getIsStarted(event: boolean) {
+    this.isStarted = event;
+  }
 }
